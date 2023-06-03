@@ -6,7 +6,7 @@ by Arrays
 Original by Sirius
 
 -------------------------------
-Arrays  | Designing + Programming + New Features
+Arrays  | Designing + Programming + New ns
 and Rafa =D
 
 ]]
@@ -1432,7 +1432,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		TopTabButton.Shadow.ImageTransparency = 1
 		TopTabButton.Image.ImageTransparency = 1
 		TopTabButton.UIStroke.Transparency = 1
-		TopTabButton.UICorner.CornerRadius = UDim2.new(1,0)
+		TopTabButton.UICorner.CornerRadius = UDim.new(1,0)
 		SideTabButton.BackgroundTransparency = 1
 		SideTabButton.Title.TextTransparency = 1
 		SideTabButton.Shadow.ImageTransparency = 1
