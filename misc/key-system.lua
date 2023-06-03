@@ -1,3 +1,5 @@
+--Update 1, fixed variables
+
 local UserInputService = game:GetService("UserInputService")
 
 local library = {}
@@ -197,7 +199,7 @@ function library:Init(title, requiredKey, callback)
     GameName.Font = Enum.Font.Gotham
     GameName.TextColor3 = Color3.fromRGB(255, 255, 255)
     GameName.TextSize = 12.000
-    GameName.Text = title
+    GameName.Text = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 end
 
 return library
