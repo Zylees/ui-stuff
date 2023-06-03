@@ -1,4 +1,4 @@
---Update 1, fixed variables
+--Update 2, fixed key system staying open for so long
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -114,8 +114,8 @@ function library:Init(title, requiredKey, callback)
     CheckButton.TextSize = 12.000
     CheckButton.MouseButton1Click:Connect(function()
         if CheckInput.Text == requiredKey then
-            pcall(callback)
             KeySystem:Destroy()
+            pcall(callback)
         end
     end)
 
