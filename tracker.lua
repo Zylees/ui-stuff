@@ -15,7 +15,7 @@ local StartingDiamonds = Library.Save.Get().Diamonds
 
 --Properties:
 
-Tracker.Name = tick()
+Tracker.Name = tostring(tick())
 Tracker.Parent = game.CoreGui
 
 BG.Name = "BG"
