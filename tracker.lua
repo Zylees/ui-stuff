@@ -1,4 +1,4 @@
---Script v2
+--Script v2.2
 
 local Library = require(game:GetService("ReplicatedStorage"):WaitForChild("Library"))
 
@@ -112,6 +112,6 @@ UIPadding_3.PaddingTop = UDim.new(0, 8)
 task.spawn(function()
 	while task.wait() do
 		Diamonds.Text = Library.Functions.Commas(Library.Save.Get().Diamonds - StartingDiamonds) .. " <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned" 
-		TimePassed.Text = tostring(math.round(tick() - StartingTick)) .. "<b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
+		TimePassed.Text = tostring(math.round(tick() - StartingTick)) .. " <b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
 	end
 end) 
