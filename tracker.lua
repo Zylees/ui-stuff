@@ -86,6 +86,7 @@ Diamonds.Text = "0 <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earn
 Diamonds.TextColor3 = Color3.fromRGB(255, 255, 255)
 Diamonds.TextSize = 14.000
 Diamonds.TextXAlignment = Enum.TextXAlignment.Left
+Diamonds.RichText = true
 
 UIPadding_2.Parent = Diamonds
 UIPadding_2.PaddingLeft = UDim.new(0, 6)
@@ -102,6 +103,7 @@ TimePassed.Text = "0 <b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elap
 TimePassed.TextColor3 = Color3.fromRGB(255, 255, 255)
 TimePassed.TextSize = 14.000
 TimePassed.TextXAlignment = Enum.TextXAlignment.Left
+TimePassed.RichText = true
 
 UIPadding_3.Parent = TimePassed
 UIPadding_3.PaddingLeft = UDim.new(0, 6)
@@ -110,6 +112,6 @@ UIPadding_3.PaddingTop = UDim.new(0, 8)
 task.spawn(function()
 	while task.wait() do
 		Diamonds.Text = Library.Functions.Commas(Library.Save.Get().Diamonds - StartingDiamonds) .. " <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned" 
-		TimePassed.Text = tostring(tick() - StartingTick) .. "<b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
+		TimePassed.Text = tostring(math.round(tick() - StartingTick)) .. "<b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
 	end
 end) 
