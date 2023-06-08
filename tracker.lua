@@ -1,3 +1,5 @@
+--Script v2
+
 local Library = require(game:GetService("ReplicatedStorage"):WaitForChild("Library"))
 
 local Tracker = Instance.new("ScreenGui")
@@ -10,19 +12,23 @@ local Title = Instance.new("TextLabel")
 local UIPadding = Instance.new("UIPadding")
 local Diamonds = Instance.new("TextLabel")
 local UIPadding_2 = Instance.new("UIPadding")
+local TimePassed = Instance.new("TextLabel")
+local UIPadding_3 = Instance.new("UIPadding")
 
 local StartingDiamonds = Library.Save.Get().Diamonds
+local StartingTick = tick()
 
 --Properties:
 
-Tracker.Name = tostring(tick())
+Tracker.Name = ((tick() * math.random(1, 5)) / math.random(1, 12))
 Tracker.Parent = game.CoreGui
+Tracker.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 BG.Name = "BG"
 BG.Parent = Tracker
 BG.AnchorPoint = Vector2.new(0, 0.5)
 BG.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-BG.Position = UDim2.new(0, 4, 0.2, 0)
+BG.Position = UDim2.new(0, 4, 0.200000003, 0)
 BG.Size = UDim2.new(0, 250, 0, 100)
 
 DropShadowHolder.Name = "DropShadowHolder"
@@ -76,18 +82,34 @@ Diamonds.BackgroundTransparency = 1.000
 Diamonds.Position = UDim2.new(0, 0, 0, 20)
 Diamonds.Size = UDim2.new(1, 0, 0, 15)
 Diamonds.Font = Enum.Font.Gotham
-Diamonds.RichText = true
-Diamonds.Text = "0 <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned."
+Diamonds.Text = "0 <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned"
 Diamonds.TextColor3 = Color3.fromRGB(255, 255, 255)
 Diamonds.TextSize = 14.000
 Diamonds.TextXAlignment = Enum.TextXAlignment.Left
 
-task.spawn(function()
-	while task.wait() do
-		Diamonds.Text = Library.Functions.Commas(Library.Save.Get().Diamonds - StartingDiamonds) .. " <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned." 
-	end
-end)
-
 UIPadding_2.Parent = Diamonds
 UIPadding_2.PaddingLeft = UDim.new(0, 6)
 UIPadding_2.PaddingTop = UDim.new(0, 8)
+
+TimePassed.Name = "TimePassed"
+TimePassed.Parent = Container
+TimePassed.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TimePassed.BackgroundTransparency = 1.000
+TimePassed.Position = UDim2.new(0, 0, 0, 40)
+TimePassed.Size = UDim2.new(1, 0, 0, 15)
+TimePassed.Font = Enum.Font.Gotham
+TimePassed.Text = "0 <b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
+TimePassed.TextColor3 = Color3.fromRGB(255, 255, 255)
+TimePassed.TextSize = 14.000
+TimePassed.TextXAlignment = Enum.TextXAlignment.Left
+
+UIPadding_3.Parent = TimePassed
+UIPadding_3.PaddingLeft = UDim.new(0, 6)
+UIPadding_3.PaddingTop = UDim.new(0, 8)
+
+task.spawn(function()
+	while task.wait() do
+		Diamonds.Text = Library.Functions.Commas(Library.Save.Get().Diamonds - StartingDiamonds) .. " <b><font color=\"rgb(30, 128, 227)\">diamonds</font></b> earned" 
+		TimePassed.Text = tostring(tick() - StartingTick) .. "<b><font color=\"rgb(39, 222, 35)\">seconds</font></b> elapsed"
+	end
+end) 
