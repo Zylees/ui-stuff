@@ -1,14 +1,5 @@
 --[[
-
-ArrayField Interface Suite
-by Arrays
-
-Original by Sirius
-
--------------------------------
-Arrays  | Designing + Programming + New ns
-and Rafa =D
-
+	Epic Rayfield Custom Version
 ]]
 
 local Release = "Rafa Edition"
@@ -2074,16 +2065,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			
 			Refresh()
 			
-			Dropdown.Icon.Visible = false
-			if DropdownSettings.Icon then 
-				if not string.match(DropdownSettings.Icon, "rbxassetid://") then
-					DropdownSettings.Icon = "rbxassetid://" .. tostring(DropdownSettings.Icon)
-				end
-				Dropdown.Icon.Image = tostring(DropdownSettings.Icon)
-				Dropdown.Icon.Visible = true
-				Dropdown.Title.Position = UDim2.new(0, 50, 0, 22)
-			end
-
 			Dropdown.BackgroundTransparency = 1
 			Dropdown.UIStroke.Transparency = 1
 			Dropdown.Title.TextTransparency = 1
@@ -2381,16 +2362,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Dropdown.Parent = TabPage
 			end
 			
-			Dropdown.Icon.Visible = false
-			if DropdownSettings.Icon then 
-				if not string.match(DropdownSettings.Icon, "rbxassetid://") then
-					DropdownSettings.Icon = "rbxassetid://" .. tostring(DropdownSettings.Icon)
-				end
-				Dropdown.Icon.Image = tostring(DropdownSettings.Icon)
-				Dropdown.Icon.Visible = true
-				Dropdown.Title.Position = UDim2.new(0, 50, 0, 22)
-			end
-
 			Dropdown.List.Visible = false
 			Dropdown.BackgroundTransparency = 1
 			Dropdown.UIStroke.Transparency = 1
@@ -2727,15 +2698,12 @@ function RayfieldLibrary:CreateWindow(Settings)
 				TweenService:Create(Dropdown.Lock,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
 				TweenService:Create(Dropdown.Lock.Reason,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
 				wait(0.2)
-				if not DropdownSettings.Locked then return end --no icon bug
-				TweenService:Create(Dropdown.Lock.Reason.Icon,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency = 0}):Play()
 			end
 			function DropdownSettings:Unlock()
 				if not DropdownSettings.Locked then return end
 				DropdownSettings.Locked = false
 				wait(0.2)
-				TweenService:Create(Dropdown.Lock.Reason.Icon,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
-				if DropdownSettings.Locked then return end --no icon bug
+				if DropdownSettings.Locked then return end
 				TweenService:Create(Dropdown.Lock,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
 				TweenService:Create(Dropdown.Lock.Reason,TweenInfo.new(0.4,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 			end
