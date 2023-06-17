@@ -1,8 +1,8 @@
 --[[
-	Epic Rayfield Custom Version
+	nutty version
 ]]
 
-local Release = "banana Edition"
+local Release = "Rafa Edition"
 local NotificationDuration = 6.5
 local RayfieldFolder = "Rayfield"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
@@ -1649,160 +1649,94 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 
 		-- Section
-function Tab:CreateSection(SectionName, Display, DefaultHide, Icon)
+		function Tab:CreateSection(SectionName, Display, DefaultHide, Icon)
 
-	local SectionValue = {
-		Holder = Rayfield.Holding,
-		Open = true
-	}
-	local Debounce = false
-	local Section = Elements.Template.SectionTitle:Clone()
-	SectionValue.Holder = Section.Holder
-	Section.Title.Text = SectionName
-	Section.Visible = true
-	Section.Parent = TabPage
+			local SectionValue = {
+				Holder = Rayfield.Holding,
+				Open = true
+			}
+			local Debounce = false
+			local Section = Elements.Template.SectionTitle:Clone()
+			SectionValue.Holder = Section.Holder
+			Section.Title.Text = SectionName
+			Section.Visible = true
+			Section.Parent = TabPage
 
-	Tab.Elements[SectionName] = {
-		type = 'section',
-		display = Display,
-		sectionholder = Section.Holder,
-		element = Section
-	}
-	
-	Section.Icon.Visible = false
-	if not Icon or Icon == nil then 
-		Section.Icon.Visible = false
-		Section.Title.Position = UDim2.new(0, 10, 0, 8)
-	else
-		Section.Icon.Image = "rbxassetid://" .. tostring(Icon)
-		Section.Icon.Visible = true
-		Section.Title.Position = UDim2.new(0, 35, 0, 8)
-	end
+			Tab.Elements[SectionName] = {
+				type = 'section',
+				display = Display,
+				sectionholder = Section.Holder,
+				element = Section
+			}
+			
+			Section.Icon.Visible = false
+			if not Icon or Icon == nil then 
+				Section.Icon.Visible = false
+				Section.Title.Position = UDim2.new(0, 10, 0, 8)
+			else
+				Section.Icon.Image = "rbxassetid://" .. tostring(Icon)
+				Section.Icon.Visible = true
+				Section.Title.Position = UDim2.new(0, 35, 0, 8)
+			end
 
-	Section.Title.TextTransparency = 1
-	TweenService:Create(Section.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
+			Section.Title.TextTransparency = 1
+			TweenService:Create(Section.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
 
-	function SectionValue:Set(NewSection)
-		Section.Title.Text = NewSection
-	end
-	
-	
-	if Display then
-		Section._UIPadding_.PaddingBottom = UDim.new(0,4)
-		Section.Holder.Visible = false
-		Section.BackgroundTransparency = 1
-		SectionValue.Holder.Parent = Rayfield.Holding
-	end
-	
-	if DefaultHide and not Display then
-		coroutine.wrap(function()
-			wait()
-			Section._UIPadding_.PaddingBottom = UDim.new(0,4)
-			for _, element in ipairs(Section.Holder:GetChildren()) do
-				if element.ClassName == "Frame" then
-					if element.Name ~= "SectionSpacing" and element.Name ~= "Placeholder" and element.Name ~= 'Topholder' then
-						if element.Name == "SectionTitle" then
-							element.Title.TextTransparency = 1
-						else
-							element.BackgroundTransparency = 1
-							element.UIStroke.Transparency = 1
-							element.Title.TextTransparency = 1
-						end
-						
-						for _, child in ipairs(element:GetChildren()) do
-							if child.ClassName == "Frame" then
-								child.Visible = false
+			function SectionValue:Set(NewSection)
+				Section.Title.Text = NewSection
+			end
+			
+			
+			if Display then
+				Section._UIPadding_.PaddingBottom = UDim.new(0,4)
+				Section.Holder.Visible = false
+				Section.BackgroundTransparency = 1
+				SectionValue.Holder.Parent = Rayfield.Holding
+				Section.Title.ImageButton.Visible = false
+			end
+			
+			if DefaultHide and not Display then
+				coroutine.wrap(function()
+					wait()
+					Section._UIPadding_.PaddingBottom = UDim.new(0,4)
+					for _, element in ipairs(Section.Holder:GetChildren()) do
+						if element.ClassName == "Frame" then
+							if element.Name ~= "SectionSpacing" and element.Name ~= "Placeholder" and element.Name ~= 'Topholder' then
+								if element.Name == "SectionTitle" then
+									element.Title.TextTransparency = 1
+								else
+									element.BackgroundTransparency = 1
+									element.UIStroke.Transparency = 1
+									element.Title.TextTransparency = 1
+								end
+								
+								for _, child in ipairs(element:GetChildren()) do
+									if child.ClassName == "Frame" then
+										child.Visible = false
+									end
+								end
 							end
+							element.Visible = false
 						end
 					end
-					element.Visible = false
-				end
+					Section.Title.ImageButton.Rotation = 180
+					SectionValue.Open = false
+				end)()
+			elseif not DefaultHide and not Display then
+				Section._UIPadding_.PaddingBottom = UDim.new(0,8)
 			end
-			SectionValue.Open = false
-		end)()
-	elseif not DefaultHide and not Display then
-		Section._UIPadding_.PaddingBottom = UDim.new(0,8)
-	end
-		
-	Section.Clickable.MouseButton1Down:Connect(function()
-		if Debounce then return end
-		if SectionValue.Open then
-			--Section.Holder.Visible = true
-			Debounce = true
-			TweenService:Create(Section._UIPadding_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {PaddingBottom = UDim.new(0,4)}):Play()
-			for _, element in ipairs(Section.Holder:GetChildren()) do
-				if element.ClassName == "Frame" then
-					if element.Name ~= "SectionSpacing" and element.Name ~= "Placeholder" and element.Name ~= 'Topholder' then
-						if element.Name == "SectionTitle" then
-							TweenService:Create(element.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 1}):Play()
-						else
-							TweenService:Create(element, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {BackgroundTransparency = 1}):Play()
-							TweenService:Create(element.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {Transparency = 1}):Play()
-							TweenService:Create(element.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 1}):Play()
-						end
-						for _, child in ipairs(element:GetChildren()) do
-							if child.ClassName == "Frame" then
-								child.Visible = false
-							end
-						end
-					end
-					element.Visible = false
-				end
-			end
-			SectionValue.Open = false
-			Debounce = false
-		else
-			Debounce = true
-			TweenService:Create(Section._UIPadding_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {PaddingBottom = UDim.new(0,8)}):Play()
-			for _, element in ipairs(Section.Holder:GetChildren()) do
-				if element.ClassName == "Frame" then
-					if element.Name ~= "SectionSpacing" and element.Name ~= "Placeholder" and element.Name ~= 'Topholder' and not element:FindFirstChild('ColorPickerIs') then
-						if element.Name == "SectionTitle" then
-							TweenService:Create(element.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
-						else
-							TweenService:Create(element, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
-							TweenService:Create(element.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
-							TweenService:Create(element.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
-						end
-						for _, child in ipairs(element:GetChildren()) do
-							if (child.ClassName == "Frame" or child.ClassName == "TextLabel" or child.ClassName == "TextBox" or child.ClassName == "ImageButton" or child.ClassName == "ImageLabel") then
-								child.Visible = true
-							end
-						end
-						elseif element:FindFirstChild('ColorPickerIs') then
-						TweenService:Create(element, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
-						TweenService:Create(element.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
-						TweenService:Create(element.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
-						if element.ColorPickerIs.Value then
-						   element.ColorSlider.Visible = true
-						   element.HexInput.Visible = true
-						   element.RGB.Visible = true
-					   end
-					element.CPBackground.Visible = true
-					element.Lock.Visible = true
-					element.Interact.Visible = true
-					element.Title.Visible = true
 				
-					end
-					element.Visible = true
-				end
+			
+			SDone = true
+			function SectionValue:Lock(Reason)
+
 			end
-			SectionValue.Open = true
-			wait(.3)
-			Debounce = false
+			function SectionValue:Unlock(Reason)
+
+			end
+
+			return SectionValue
 		end
-	end)
-	SDone = true
-	function SectionValue:Lock(Reason)
-
-	end
-	function SectionValue:Unlock(Reason)
-
-	end
-
-	return SectionValue
-end
-
 
 		-- Label
 		function Tab:CreateLabel(LabelText, SectionParent)
