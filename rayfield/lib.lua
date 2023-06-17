@@ -1,8 +1,8 @@
 --[[
-	nutty version
+	the mostest bestest screept
 ]]
 
-local Release = "Rafa Edition"
+local Release = "ahgda Edition"
 local NotificationDuration = 6.5
 local RayfieldFolder = "Rayfield"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
@@ -110,30 +110,8 @@ local ContentProvider = game:GetService("ContentProvider")
 
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://13067385695")[1]
+Rayfield.Parent = game.CoreGui or LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 
-pcall(function()
-_G.LastRayField.Name = 'Old Arrayfield'
-_G.LastRayField.Enabled = false
-end)
-
-local ParentObject = function(Gui)
-    local success, failure = pcall(function()
-        if get_hidden_gui or gethui then
-            local hiddenUI = get_hidden_gui or gethui
-            Gui.Parent = hiddenUI()
-        elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-            syn.protect_gui(Gui)
-            Gui.Parent = CoreGui
-        elseif CoreGui then
-            Gui.Parent = CoreGui
-        end
-    end)
-    if not success and failure then
-        Gui.Parent = LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
-    end
-	_G.LastRayField = Rayfield
-end
-ParentObject(Rayfield)
 
 --Object Variables
 
