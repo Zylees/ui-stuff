@@ -1,5 +1,5 @@
 --[[
-	Zyles Custom Rayfield Version
+	Zyles Custom Rayfield Version | everything is now grass color
 ]]
 
 local Release = "Zyles Edition"
@@ -35,12 +35,12 @@ local RayfieldLibrary = {
 			ElementStroke = Color3.fromRGB(50, 50, 50),
 			SecondaryElementStroke = Color3.fromRGB(40, 40, 40), -- For labels and paragraphs
 
-			SliderBackground = Color3.fromRGB(43, 105, 159),
-			SliderProgress = Color3.fromRGB(43, 105, 159),
-			SliderStroke = Color3.fromRGB(48, 119, 177),
+			SliderBackground = Color3.fromRGB(49, 159, 43),
+			SliderProgress = Color3.fromRGB(49, 159, 43),
+			SliderStroke = Color3.fromRGB(57, 177, 48),
 
 			ToggleBackground = Color3.fromRGB(30, 30, 30),
-			ToggleEnabled = Color3.fromRGB(0, 146, 214),
+			ToggleEnabled = Color3.fromRGB(14, 214, 0),
 			ToggleDisabled = Color3.fromRGB(100, 100, 100),
 			ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
 			ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
