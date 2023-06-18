@@ -1,5 +1,5 @@
 --[[
-	Zyles Custom Rayfield Version | everything is now grass color (fixed)
+	Zyles Custom Rayfield Version | everything is now grass color (fixed) agan
 ]]
 
 local Release = "Zyles Edition"
@@ -1382,6 +1382,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		TopTabButton.Title.Text = Name SideTabButton.Title.Text = Name
 		SideTabButton.Title.TextWrapped = false TopTabButton.Title.TextWrapped = false 
+
+		TopList.Size = UDim2.new(0, 471, 0, 32)
+		--TopTabButton.Interact.Size = UDim2.new()
 
 		TopTabButton.Size = UDim2.new(0, TopTabButton.Title.TextBounds.X + 30, 0, 30)
 
