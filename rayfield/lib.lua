@@ -1,5 +1,5 @@
 --[[
-	Zyles Custom Rayfield Version | im blind ong
+	Zyles Custom Rayfield Version | better button scaling lmfao
 ]]
 
 local Release = "Zyles Edition"
@@ -1540,7 +1540,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Button.Parent = TabPage
 			end
 
-			Button.Size = UDim2.new(0, 465, 0, 45)
+			Button.Size = UDim2.new(0, 465, 0, 40)
+			Button.ElementIndicator.Position = UDim2.new(0, 400, 0, 21)
+			Button.Title.Position = UDim2.new(0, 173, 0, 21)
 			
 			TweenService:Create(Button, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
 			TweenService:Create(Button.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
