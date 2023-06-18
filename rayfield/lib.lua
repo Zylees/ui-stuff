@@ -1,5 +1,5 @@
 --[[
-	Zyles Custom Rayfield Version | everything is now grass color (fixed) agan
+	Zyles Custom Rayfield Version | pog nuts
 ]]
 
 local Release = "Zyles Edition"
@@ -1539,6 +1539,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			else
 				Button.Parent = TabPage
 			end
+
+			Button.Size = UDim2.new(0, 465, 0, 35)
+			
 			TweenService:Create(Button, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
 			TweenService:Create(Button.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
 			TweenService:Create(Button.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()	
