@@ -1,8 +1,8 @@
 --[[
-	the mostest bestest screept
+	Zyles Custom Rayfield Version
 ]]
 
-local Release = "ahgda Edition"
+local Release = "Zyles Edition"
 local NotificationDuration = 6.5
 local RayfieldFolder = "Rayfield"
 local ConfigurationFolder = RayfieldFolder.."/Configurations"
@@ -1075,9 +1075,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 	LoadingFrame.Subtitle.TextTransparency = 1
 	Main.Shadow.Image.ImageTransparency = 1
 	LoadingFrame.Version.TextTransparency = 1
-	LoadingFrame.Title.Text = Settings.LoadingTitle or "Arrayfield Interface Suite"
-	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "by Sirius | Meta | Rafa"
-	if Settings.LoadingTitle ~= "Arrayfield Interface Suite" then
+	LoadingFrame.Title.Text = Settings.LoadingTitle or "Custom Rayfield UI"
+	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "by Sirius | Meta | Zyles"
+	if Settings.LoadingTitle ~= "Custom Rayfield UI" then
 		LoadingFrame.Version.Text = "Arrayfield UI"
 	end
 
@@ -1650,12 +1650,14 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Section.Icon.Visible = false
 			if not Icon or Icon == nil then 
 				Section.Icon.Visible = false
-				Section.Title.Position = UDim2.new(0, 10, 0, 8)
+				Section.Title.Position = UDim2.new(0, 10, 0, 6)
 			else
 				Section.Icon.Image = "rbxassetid://" .. tostring(Icon)
 				Section.Icon.Visible = true
-				Section.Title.Position = UDim2.new(0, 35, 0, 8)
+				Section.Title.Position = UDim2.new(0, 35, 0, 6)
 			end
+
+			Section.Title.ImageButton.Visible = false -- Attempt to remove the gay furry image button
 
 			Section.Title.TextTransparency = 1
 			TweenService:Create(Section.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
@@ -3520,7 +3522,7 @@ function RayfieldLibrary:ToggleOldTabStyle(oldTabStyle)
 	if oldTabStyle then
 		TopList.Visible = true
 		Elements.Size = UDim2.new(1, 0, 0, 364)
-		Elements.Position = UDim2.new(0.5, 0, 0.5, 45)
+		Elements.Position = UDim2.new(0.5, 0, 0.5, 35)
 		
 		Topbar.Type.Visible = false
 		Topbar.Title.Position = UDim2.new(0, 15, 0.5, 0)
